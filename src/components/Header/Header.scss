@@ -10,14 +10,16 @@
 
   &__link {
     text-decoration: none;
-    border-bottom: 1px solid $bone;
+    border-bottom: 1px solid $mint;
     color: $bone;
     font-size: 2rem;
     padding: 0.5rem 1rem;
+    background-color: $mint;
+    color: $charcoal;
   }
 
   &__link:hover {
-    background-color: $bone;
-    color: $charcoal;
+    background-color: $charcoal;
+    color: $bone;
   }
 }

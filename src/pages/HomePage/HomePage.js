@@ -1,6 +1,11 @@
 import "./HomePage.scss";
+import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const HomePage = ({ players, handleInputChange, input }) => {
+  const filteredPlayers = players.filter((player) => {
+    return player.name.toLowerCase().includes(input.toLowerCase());
+  });
+
   return (
     <main className="hero">
       <section className="hero__div">
@@ -15,11 +20,30 @@ const HomePage = () => {
 
         <div className="input__wrapper">
           <form className="input__form">
-            <input placeholder="name" type="text" className="input__input" />
+            <input
+              onChange={handleInputChange}
+              placeholder="name"
+              type="text"
+              className="input__input"
+            />
             <button className="input__submit">Submit</button>
           </form>
         </div>
       </section>
+      <div className="input__players">
+        {input &&
+          filteredPlayers.map((player) => {
+            return (
+              <Link
+                to={`/leaderboard/${player.id}`}
+                className="input__player"
+                key={player.id}
+              >
+                <p className="input__player-name">{player.name}</p>
+              </Link>
+            );
+          })}
+      </div>
     </main>
   );
 };
