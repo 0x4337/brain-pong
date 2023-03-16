@@ -12,6 +12,10 @@
     align-self: center;
   }
 
+  &__players {
+    width: 60%;
+  }
+
   &__wrapper {
     display: flex;
     justify-content: space-around;
