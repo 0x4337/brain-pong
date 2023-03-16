@@ -1,0 +1,85 @@
+@use "../../styles/partials/variables" as *;
+
+.hero {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  flex-direction: column;
+
+  &__div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $bone;
+  }
+
+  &__title {
+    font-size: $h1;
+    margin: 0;
+  }
+
+  &__title-ball {
+    border-bottom: 1px solid $bone;
+  }
+
+  &__subtitle {
+    font-size: $h3;
+    border-left: 1px solid $bone;
+    padding: 0 1rem;
+  }
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    color: #9c9d9d;
+    font-weight: 200;
+    background-color: $bone;
+    color: $charcoal;
+    padding: 0.5rem;
+  }
+
+  &__form {
+    border-bottom: 1px solid $bone;
+    width: 100%;
+    display: flex;
+  }
+
+  &__wrapper {
+    width: 50%;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 2rem;
+    // border-radius: 10rem;
+    background-color: $charcoal;
+    outline: none;
+    border: none;
+    color: $bone;
+    font-family: Roboto;
+  }
+
+  &__submit {
+    align-self: center;
+    font-family: Roboto;
+    background-color: $charcoal;
+    border: none;
+    outline: none;
+    color: $bone;
+    font-size: 1.5rem;
+    padding: 1rem;
+    height: 50%;
+    cursor: pointer;
+  }
+
+  &__submit:hover {
+    background-color: $bone;
+    color: $charcoal;
+  }
+}
