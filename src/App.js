@@ -1,10 +1,18 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import HomePage from "./pages/HomePage";
+import Leaderboard from "./pages/Leaderboard";
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>React App</h1>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="leaderboard/:playerId" element={<Leaderboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
