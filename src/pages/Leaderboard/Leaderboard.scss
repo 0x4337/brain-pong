@@ -1,0 +1,35 @@
+@use "../../styles/partials/variables" as *;
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  color: $bone;
+  gap: 2rem;
+
+  &__title {
+    font-size: $h2;
+    margin: 2rem 0;
+    align-self: center;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    padding: 2rem 0;
+  }
+
+  &__stat {
+    // width: 20rem;
+    // border-bottom: 1px solid $bone;
+    background-color: $bone;
+    color: $charcoal;
+    padding: 0.5rem 1rem;
+    margin: 0;
+  }
+
+  &__selected {
+    background-color: $mint;
+    color: $charcoal;
+  }
+}

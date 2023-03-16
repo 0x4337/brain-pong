@@ -1,0 +1,66 @@
+@use "../../styles/partials/variables" as *;
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //   padding: 1rem;
+  //   border-bottom: 1px solid $bone;
+
+  &--highlighted {
+    background-color: $mint;
+    color: $charcoal;
+  }
+
+  &__div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    color: $bone;
+    margin: 0;
+    // gap: 2rem;
+  }
+
+  &__name {
+    width: 5rem;
+
+    &--highlighted {
+      color: $charcoal;
+    }
+  }
+
+  &__wins {
+    color: $mint;
+    width: 5rem;
+
+    &--highlighted {
+      color: $charcoal;
+    }
+  }
+
+  &__played {
+    width: 5rem;
+
+    &--highlighted {
+      color: $charcoal;
+    }
+  }
+
+  &__losses {
+    color: $pink;
+    width: 5rem;
+
+    &--highlighted {
+      color: $charcoal;
+    }
+  }
+
+  &__winrate {
+    width: 5rem;
+
+    &--highlighted {
+      color: $charcoal;
+    }
+  }
+}
