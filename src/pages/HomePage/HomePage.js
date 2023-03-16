@@ -1,7 +1,7 @@
 import "./HomePage.scss";
 
 const HomePage = () => {
-  return <></>;
+  return <> </>;
 };
 
 export default HomePage;

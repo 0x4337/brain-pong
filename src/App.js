@@ -1,8 +1,8 @@
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import HomePage from "./pages/HomePage";
-import Leaderboard from "./pages/Leaderboard";
+import Header from "./components/Header/Header";
+import HomePage from "./pages/HomePage/HomePage";
+import Leaderboard from "./pages/Leaderboard/Leaderboard";
 
 const App = () => {
   return (
