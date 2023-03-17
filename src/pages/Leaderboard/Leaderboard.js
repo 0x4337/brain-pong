@@ -2,14 +2,23 @@ import "./Leaderboard.scss";
 import Player from "../../components/Player/Player";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
-const Leaderboard = ({ players, getLeaderboard }) => {
+const Leaderboard = () => {
   const { playerId } = useParams();
 
   const API_BASE_URL = "http://localhost:8085";
   const API_LEADERBOARD_ENDPOINT = "/leaderboard";
 
-  const player = players.find((player) => player.id === playerId);
+  const [players, setStoredPlayers] = useState(null);
+
+  useEffect(() => {
+    const players = localStorage.getItem("players");
+    if (players) {
+      setStoredPlayers(JSON.parse(players));
+    }
+    console.log(players);
+  }, []);
 
   const handleWin = async () => {
     // TODO:
@@ -19,8 +28,11 @@ const Leaderboard = ({ players, getLeaderboard }) => {
     const { data } = await axios.patch(
       `${API_BASE_URL}${API_LEADERBOARD_ENDPOINT}/${playerId}/win`
     );
-
-    getLeaderboard();
+    const { data: players } = await axios.get(
+      `${API_BASE_URL}${API_LEADERBOARD_ENDPOINT}`
+    );
+    localStorage.setItem("players", JSON.stringify(players));
+    setStoredPlayers(players);
   };
 
   const handleLoss = async () => {
@@ -31,18 +43,25 @@ const Leaderboard = ({ players, getLeaderboard }) => {
     const { data } = await axios.patch(
       `${API_BASE_URL}${API_LEADERBOARD_ENDPOINT}/${playerId}/lost`
     );
-
-    getLeaderboard();
+    const { data: players } = await axios.get(
+      `${API_BASE_URL}${API_LEADERBOARD_ENDPOINT}`
+    );
+    localStorage.setItem("players", JSON.stringify(players));
+    setStoredPlayers(players);
   };
 
-  const sortedPlayers = players.sort((a, b) => {
-    // return b.gamesWon - a.gamesWon;
-  });
+  //   const sortedPlayers = players.sort((a, b) => {
+  //     // return b.gamesWon - a.gamesWon;
+  //   });
 
   // FIXME:
   // Fix errors on leaderboard when refresh
   // Something to do with local storage
   // localStorage.setItem(player);
+
+  if (!players) return <h1>Loading...</h1>;
+
+  const player = players.find((player) => player.id === playerId);
 
   const winRateCalc = player ? (player.gamesWon / player.gamesPlayed) * 100 : 0;
 
@@ -53,7 +72,7 @@ const Leaderboard = ({ players, getLeaderboard }) => {
   console.log(winRateCalc);
 
   const getPlayerRank = (winRate) => {
-    if (winRate <= 10) return "Peasant 🧌";
+    if (winRate <= 10 || !winRate) return "Peasant 🧌";
     if (winRate <= 20) return "Squire 🦥";
     if (winRate <= 30) return "Apprentice 🐀";
     if (winRate <= 40) return "Knight 🏹";
@@ -63,6 +82,12 @@ const Leaderboard = ({ players, getLeaderboard }) => {
     if (winRate <= 80) return "Elite 🎯";
     if (winRate <= 90) return "Master 🥷🏽";
     return "Legend 👑";
+  };
+
+  const getPlayersScore = (player) => {
+    return (
+      player.gamesWon * ((player.gamesPlayed / (player.gamesPlayed + 1)) * 1000)
+    );
   };
 
   return (
@@ -97,15 +122,17 @@ const Leaderboard = ({ players, getLeaderboard }) => {
           <p className="leaderboard__stat">Score</p>
           <p className="leaderboard__stat">Winrate</p>
         </div>
-        {players.map((player) => {
-          return (
-            <Player
-              //   playerScore={playerScore}
-              player={player}
-              playerId={playerId}
-            />
-          );
-        })}
+        {players
+          .sort((a, b) => getPlayersScore(b) - getPlayersScore(a))
+          .map((player) => {
+            return (
+              <Player
+                //   playerScore={playerScore}
+                player={player}
+                playerId={playerId}
+              />
+            );
+          })}
       </div>
     </section>
   );

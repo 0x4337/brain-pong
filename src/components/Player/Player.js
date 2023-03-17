@@ -18,22 +18,6 @@ const Player = ({ player, playerId }) => {
     return `${baseClass}${isHighlighted ? ` ${baseClass}--highlighted` : ""}`;
   };
 
-  //   const getScore = async () => {
-  //     console.log(playerScore);
-  //     await axios.patch(`${API_BASE_URL}${API_LEADERBOARD_ENDPOINT}/score`, {
-  //       score: playerScore,
-  //     });
-  //     // calculate score and give it to req.body.score
-  //   };
-
-  //   useEffect(() => {
-  //     try {
-  //       getScore();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }, []);
-
   return (
     <article className={getClassName("player")}>
       <div className={getClassName("player__div")}>
