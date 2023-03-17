@@ -10,10 +10,21 @@
     font-size: $h2;
     margin: 2rem 0;
     align-self: center;
+    border-left: 2px solid $mint;
+    padding: 0 2rem;
+  }
+
+  &__ball {
+    border-bottom: 2px solid $mint;
+  }
+
+  &__ball:hover {
+    background-color: $mint;
+    color: $charcoal;
   }
 
   &__players {
-    width: 60%;
+    // width: 60%;
   }
 
   &__wrapper {
@@ -25,15 +36,63 @@
 
   &__stat {
     // width: 20rem;
-    // border-bottom: 1px solid $bone;
-    background-color: $bone;
-    color: $charcoal;
-    padding: 0.5rem 1rem;
+    border-left: 1px solid $bone;
+    // background-color: $bone;
+
+    color: $bone;
+    padding: 0 1rem;
     margin: 0;
   }
 
   &__selected {
     background-color: $mint;
     color: $charcoal;
+  }
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  //   gap: 2rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  background-color: $mint;
+  color: $charcoal;
+  width: 100%;
+  align-items: center;
+
+  &__name {
+    font-size: $h2;
+    margin: 2rem 0;
+    align-self: center;
+  }
+
+  &__rank {
+    color: $charcoal;
+    padding: 0.5rem 1rem;
+    margin: 0;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__add {
+    border-bottom: 1px solid $charcoal;
+    padding: 0.75rem 0;
+  }
+
+  &__button {
+    border: 1px solid $charcoal;
+    background-color: $mint;
+    color: $charcoal;
+    padding: 0.5rem 2rem;
+    margin: 1rem;
+  }
+
+  &__button:hover {
+    background-color: $charcoal;
+    color: $bone;
+    cursor: pointer;
   }
 }

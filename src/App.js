@@ -50,7 +50,9 @@ const App = () => {
         />
         <Route
           path="leaderboard/:playerId"
-          element={<Leaderboard players={players} />}
+          element={
+            <Leaderboard getLeaderboard={getLeaderboard} players={players} />
+          }
         />
       </Routes>
     </BrowserRouter>

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect } from "react";
 import "./Player.scss";
 
 const Player = ({ player, playerId }) => {
@@ -5,9 +7,32 @@ const Player = ({ player, playerId }) => {
   const winRate = (player.gamesWon / player.gamesPlayed) * 100;
   const isHighlighted = player.id === playerId;
 
+  const API_BASE_URL = "http://localhost:8085";
+  const API_LEADERBOARD_ENDPOINT = "/leaderboard";
+
+  const playerScore = Math.floor(
+    player.gamesWon * ((player.gamesPlayed / (player.gamesPlayed + 1)) * 1000)
+  );
+
   const getClassName = (baseClass) => {
     return `${baseClass}${isHighlighted ? ` ${baseClass}--highlighted` : ""}`;
   };
+
+  //   const getScore = async () => {
+  //     console.log(playerScore);
+  //     await axios.patch(`${API_BASE_URL}${API_LEADERBOARD_ENDPOINT}/score`, {
+  //       score: playerScore,
+  //     });
+  //     // calculate score and give it to req.body.score
+  //   };
+
+  //   useEffect(() => {
+  //     try {
+  //       getScore();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }, []);
 
   return (
     <article className={getClassName("player")}>
@@ -18,6 +43,8 @@ const Player = ({ player, playerId }) => {
         <p className={getClassName("player__losses")}>
           {player.gamesPlayed - player.gamesWon}
         </p>
+        {/* <p className={getClassName("player__score")}>{player.score}</p> */}
+        <p className={getClassName("player__score")}>{playerScore}</p>
         <p className={getClassName("player__winrate")}>
           {Math.floor(winRate)}%
         </p>
