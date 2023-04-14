@@ -14,7 +14,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const App = () => {
-  const API_BASE_URL = "http://localhost:8085";
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   const API_LEADERBOARD_ENDPOINT = "/leaderboard";
 
   const [players, setPlayers] = useState([]);

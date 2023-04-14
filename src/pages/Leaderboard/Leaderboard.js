@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const Leaderboard = () => {
   const { playerId } = useParams();
 
-  const API_BASE_URL = "http://localhost:8085";
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   const API_LEADERBOARD_ENDPOINT = "/leaderboard";
 
   const [players, setStoredPlayers] = useState(null);
@@ -120,7 +120,7 @@ const Leaderboard = () => {
 
       <div className="stats">
         <h3 className="stats__name">{player.name}</h3>
-        <div className="ranks">
+        {/* <div className="ranks">
           {ranks.map((rank, index) => (
             <p
               key={index}
@@ -129,8 +129,8 @@ const Leaderboard = () => {
               {rank.name}
             </p>
           ))}
-        </div>
-        {/* <p className="stats__rank">Rank: {getPlayerRank(winRateCalc)}</p> */}
+        </div> */}
+        <p className="stats__rank">Rank: {getPlayerRank(winRateCalc)}</p>
         {/* <p className="stats__add">Add A Game</p> */}
 
         <p className="stats__score">Score: {playerScore}</p>
