@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import "./Player.scss";
 
 const Player = ({ player, playerId }) => {
-  console.log(player);
   const winRate = (player.gamesWon / player.gamesPlayed) * 100;
   const isHighlighted = player.id === playerId;
 

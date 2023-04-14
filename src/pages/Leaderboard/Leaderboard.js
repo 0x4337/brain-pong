@@ -17,7 +17,6 @@ const Leaderboard = () => {
     if (players) {
       setStoredPlayers(JSON.parse(players));
     }
-    console.log(players);
   }, []);
 
   const handleWin = async () => {
@@ -68,8 +67,6 @@ const Leaderboard = () => {
   const playerScore = Math.floor(
     player.gamesWon * ((player.gamesPlayed / (player.gamesPlayed + 1)) * 1000)
   );
-
-  console.log(winRateCalc);
 
   const getRanks = (winRate) => {
     const ranks = [

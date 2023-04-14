@@ -22,13 +22,12 @@ const App = () => {
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     // post the event.target.value to the api
     event.preventDefault();
-    console.log(input);
+
     if (!input) {
       console.log("Please enter a name");
     } else {
