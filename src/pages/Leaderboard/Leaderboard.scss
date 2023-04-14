@@ -96,3 +96,20 @@
     cursor: pointer;
   }
 }
+
+/* Leaderboard.scss */
+
+.ranks {
+  padding: 0;
+  list-style-type: none;
+}
+
+.rank {
+  /* Add your base styles for the rank items here */
+}
+
+.rank--active {
+  /* Add your styles for the active rank item here */
+  font-weight: bold;
+  color: #ff9800;
+}

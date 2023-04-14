@@ -30,7 +30,7 @@ const Player = ({ player, playerId }) => {
         {/* <p className={getClassName("player__score")}>{player.score}</p> */}
         <p className={getClassName("player__score")}>{playerScore}</p>
         <p className={getClassName("player__winrate")}>
-          {Math.floor(winRate)}%
+          {Math.floor(winRate) || 0}%
         </p>
       </div>
     </article>

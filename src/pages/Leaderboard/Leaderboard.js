@@ -71,6 +71,28 @@ const Leaderboard = () => {
 
   console.log(winRateCalc);
 
+  const getRanks = (winRate) => {
+    const ranks = [
+      { name: "Peasant 🧌", minWinRate: 0, maxWinRate: 10 },
+      { name: "Squire 🦥", minWinRate: 11, maxWinRate: 20 },
+      { name: "Apprentice 🐀", minWinRate: 21, maxWinRate: 30 },
+      { name: "Knight 🏹", minWinRate: 31, maxWinRate: 40 },
+      { name: "Warrior 🏋🏼‍♂️", minWinRate: 41, maxWinRate: 50 },
+      { name: "Gladiator 🏇🏼", minWinRate: 51, maxWinRate: 60 },
+      { name: "Champion 🏅", minWinRate: 61, maxWinRate: 70 },
+      { name: "Elite 🎯", minWinRate: 71, maxWinRate: 80 },
+      { name: "Master 🥷🏽", minWinRate: 81, maxWinRate: 90 },
+      { name: "Legend 👑", minWinRate: 91, maxWinRate: 100 },
+    ];
+
+    return ranks.map((rank) => ({
+      ...rank,
+      isActive: winRate >= rank.minWinRate && winRate <= rank.maxWinRate,
+    }));
+  };
+
+  const ranks = getRanks(winRateCalc);
+
   const getPlayerRank = (winRate) => {
     if (winRate <= 10 || !winRate) return "Peasant 🧌";
     if (winRate <= 20) return "Squire 🦥";
@@ -98,8 +120,19 @@ const Leaderboard = () => {
 
       <div className="stats">
         <h3 className="stats__name">{player.name}</h3>
-        <p className="stats__rank">Rank: {getPlayerRank(winRateCalc)}</p>
+        <div className="ranks">
+          {ranks.map((rank, index) => (
+            <p
+              key={index}
+              className={`rank ${rank.isActive ? "rank--active" : ""}`}
+            >
+              {rank.name}
+            </p>
+          ))}
+        </div>
+        {/* <p className="stats__rank">Rank: {getPlayerRank(winRateCalc)}</p> */}
         {/* <p className="stats__add">Add A Game</p> */}
+
         <p className="stats__score">Score: {playerScore}</p>
         <div className="stats__buttons">
           <button onClick={handleWin} className="stats__button">
